@@ -20,11 +20,6 @@ export default class SingleProduct extends Component {
       date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()
     }`;
 
-    const selectStar = pos => {
-      if (pos <= rate) return star;
-      return borderStar;
-    };
-
     return (
       <div className="sc-container">
         <div className="sc-header">
@@ -33,7 +28,12 @@ export default class SingleProduct extends Component {
             <div className="sc-rate">
               {[1, 2, 3, 4, 5].map(val => {
                 return (
-                  <img key={val} height="18px" src={selectStar(val)} alt="" />
+                  <img
+                    key={val}
+                    height="18px"
+                    src={val <= rate ? star : borderStar}
+                    alt=""
+                  />
                 );
               })}
             </div>

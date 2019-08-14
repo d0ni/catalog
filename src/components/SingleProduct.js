@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./SingleProduct.scss";
 
-import { httpGet } from "../constant/constant";
+import { httpGet } from "../helpers/helper";
 
 import star from "../icons/star.svg";
 import borderStar from "../icons/star_border.svg";
@@ -31,7 +31,9 @@ export default class SingleProduct extends Component {
   }
 
   render() {
-    const { id, title, img, text } = this.props.obj;
+    const {
+      obj: { id, title, img, text }
+    } = this.props;
 
     const avr = this.average(this.state.requestText.map(obj => obj.rate));
 

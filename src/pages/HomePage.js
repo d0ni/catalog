@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./HomePage.scss";
 
 import SingleProduct from "../components/SingleProduct";
-import { httpGet } from "../constant/constant";
+import { httpGet } from "../helpers/helper";
 
 export default class HomePage extends Component {
   state = {

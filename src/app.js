@@ -24,8 +24,7 @@ export default class App extends React.Component {
         <BrowserRouter history={history}>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/register" component={RegisterPage} />
-            <Route path="/login" component={RegisterPage} />
+            <Route path="/auth/:type" component={RegisterPage} />
             <Route path="/product/:id" component={Product} />
           </Switch>
         </BrowserRouter>

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Product.scss";
 
-import { httpGet } from "../constant/constant";
+import { httpGet } from "../helpers/helper";
 import SingleComment from "../components/SingleComment";
 
 import star from "../icons/star.svg";
@@ -71,11 +71,6 @@ export default class Product extends React.Component {
     const { requestText, reviews, rate, comment } = this.state;
     const { title, img, text } = requestText[id - 1] ? requestText[id - 1] : "";
 
-    const selectStar = pos => {
-      if (pos <= rate) return star;
-      return borderStar;
-    };
-
     const choseRate = rate => () => {
       this.setState({ rate });
     };
@@ -112,7 +107,7 @@ export default class Product extends React.Component {
                     key={val}
                     onClick={choseRate(val)}
                     height="24px"
-                    src={selectStar(val)}
+                    src={val <= rate ? star : borderStar}
                     alt=""
                   />
                 );

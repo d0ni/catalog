@@ -4,10 +4,10 @@ export function RegisterForm() {
   return (
     <>
       <div className="register-form">
-        <a className="btn" href="/register/">
+        <a className="btn" href="/auth/register/">
           Sign-up
         </a>
-        <a className="btn" href="/login/">
+        <a className="btn" href="/auth/login/">
           Sign-in
         </a>
       </div>
