@@ -1,20 +1,21 @@
 header {
   background-color: gray;
-  height: 60px;
+  height: 40px;
 }
 
 .btn {
   font-size: 24px;
   padding: 0 10px;
   width: 120px;
-  height: 60px;
-  line-height: 40px;
+  height: 40px;
+  color: white;
   text-align: center;
   text-decoration: none;
   background-color: gray;
 }
 
 .register-form {
+  display: flex;
   padding: 0;
 }
 
@@ -28,5 +29,25 @@ header {
 
 main {
   display: flex;
-  word-wrap: wrap;
+  justify-content: center;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+}
+
+@media (max-width: 600px) {
+  .list {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 992px) {
+  .list {
+    flex: 0 0 33.3%;
+    max-width: 33.3%;
+  }
 }

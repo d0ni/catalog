@@ -1,39 +1,31 @@
 import React, { Component } from "react";
 import "./HomePage.scss";
 
-import RegisterForm from "../components/RegisterForm";
 import SingleProduct from "../components/SingleProduct";
+import { httpGet } from "../constant/constant";
 
 export default class HomePage extends Component {
-  render() {
-    const url = "http://smktesting.herokuapp.com/api/products/";
-    let xhr = new XMLHttpRequest();
-    let requestText = "";
+  state = {
+    requestText: []
+  };
 
-    xhr.open("GET", url, false);
-    xhr.send();
-    if (xhr.status !== 200) {
-      // обработать ошибку
-      alert(xhr.status + ": " + xhr.statusText);
-    } else {
-      requestText = JSON.parse(xhr.responseText);
-    }
+  componentDidMount() {
+    const url = "http://smktesting.herokuapp.com/api/products/";
+
+    httpGet(url).then(response => {
+      this.setState({ requestText: JSON.parse(response) });
+    });
+  }
+
+  render() {
     return (
-      <>
-        <header>
-          <div className="header-content">
-            <a className="btn" href="/">
-              Home
-            </a>
-            <RegisterForm />
-          </div>
-        </header>
-        <main>
-          {requestText.map(obj => (
-            <SingleProduct obj={obj} />
+      <main>
+        <div className="list">
+          {this.state.requestText.map(obj => (
+            <SingleProduct key={obj.id} obj={obj} />
           ))}
-        </main>
-      </>
+        </div>
+      </main>
     );
   }
 }

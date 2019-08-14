@@ -25,6 +25,7 @@
     margin: 0 0 12px;
 
     a {
+      color: blue;
       text-decoration: none;
     }
   }
@@ -46,18 +47,4 @@
 .rate {
   padding: 0 10px;
   font-size: 80%;
-}
-
-@media screen and (max-width: 600px) {
-  body {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-}
-
-@media screen and (max-width: 992px) {
-  body {
-    flex: 0 0 33.3%;
-    max-width: 33.3%;
-  }
 }

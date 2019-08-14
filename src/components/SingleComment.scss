@@ -1,0 +1,35 @@
+.sc-container {
+  // border: 1px solid rgba($color: #000000, $alpha: 0.3);
+  width: 600px;
+  margin: 0 0 20px;
+}
+
+.sc-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba($color: #000000, $alpha: 0.125);
+}
+
+.sc-urc {
+  display: flex;
+  align-items: center;
+}
+
+.sc-username {
+  font-size: 18px;
+  padding: 0 10px;
+}
+
+.sc-rate {
+  display: flex;
+  align-items: flex-end;
+}
+
+.sc-date {
+  color: gray;
+  padding: 0 10px;
+}
+
+.sc-text {
+  background-color: rgba($color: #000000, $alpha: 0.05);
+}

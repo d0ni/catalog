@@ -1,30 +1,38 @@
 import React, { Component } from "react";
 import "./SingleProduct.scss";
 
+import { httpGet } from "../constant/constant";
+
 import star from "../icons/star.svg";
 import borderStar from "../icons/star_border.svg";
 import halfStar from "../icons/star_half.svg";
 
 export default class SingleProduct extends Component {
+  state = {
+    requestText: []
+  };
+
+  average(arr) {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) sum += arr[i];
+    sum = sum === 0 ? sum : sum / arr.length;
+    return Math.floor(sum * 10) / 10;
+  }
+
+  componentDidMount() {
+    const url = `http://smktesting.herokuapp.com/api/reviews/${
+      this.props.obj.id
+    }`;
+
+    httpGet(url).then(response => {
+      this.setState({ requestText: JSON.parse(response) });
+    });
+  }
+
   render() {
     const { id, title, img, text } = this.props.obj;
-    const url = `http://smktesting.herokuapp.com/api/reviews/${id}`;
-    let xhr = new XMLHttpRequest();
-    let requestText = "";
-    let avr = 0;
 
-    xhr.open("GET", url, false);
-    xhr.send();
-    if (xhr.status !== 200) {
-      // обработать ошибку
-      alert(xhr.status + ": " + xhr.statusText);
-    } else {
-      requestText = JSON.parse(xhr.responseText);
-    }
-
-    requestText.map(obj => (avr += obj.rate));
-    avr /= requestText.length;
-    avr = Math.floor(avr * 10) / 10;
+    const avr = this.average(this.state.requestText.map(obj => obj.rate));
 
     const selectStar = pos => {
       if (pos < avr) return star;
@@ -36,7 +44,7 @@ export default class SingleProduct extends Component {
       <div className="product-container">
         <div className="product-border">
           <div className="product-img">
-            <a href="/">
+            <a href={`/product/${id}`}>
               <img
                 src={`http://smktesting.herokuapp.com/static/${img}`}
                 alt={title}
@@ -46,7 +54,7 @@ export default class SingleProduct extends Component {
 
           <div className="text-container">
             <h4>
-              <a className="product-title" href="/">
+              <a className="product-title" href={`/product/${id}`}>
                 {title}
               </a>
             </h4>
@@ -54,11 +62,11 @@ export default class SingleProduct extends Component {
           </div>
 
           <div className="product-rate-border">
-            <img height="18px" src={selectStar(1)} />
-            <img height="18px" src={selectStar(2)} />
-            <img height="18px" src={selectStar(3)} />
-            <img height="18px" src={selectStar(4)} />
-            <img height="18px" src={selectStar(5)} />
+            {[1, 2, 3, 4, 5].map(val => {
+              return (
+                <img key={val} height="18px" src={selectStar(val)} alt="" />
+              );
+            })}
             <div className="rate">{avr}</div>
           </div>
         </div>
