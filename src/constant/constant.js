@@ -3,11 +3,6 @@ export function httpGet(url) {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url, true);
 
-    // xhr.setRequestHeader(
-    //   "Authorization",
-    //   `Token ${localStorage.getItem("Token")}`
-    // );
-
     xhr.onload = function() {
       if (this.status === 200) {
         resolve(this.response);

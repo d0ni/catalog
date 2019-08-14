@@ -26,6 +26,7 @@ export default class Product extends React.Component {
       text: this.state.comment
     });
 
+    // POST request to add comment to server
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, false);
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -37,6 +38,7 @@ export default class Product extends React.Component {
     if (xhr.status !== 200) {
       console.log(xhr.status + ": " + xhr.statusText);
     } else {
+      //GET request to update comment list
       const urlRev = `http://smktesting.herokuapp.com/api/reviews/${
         this.props.match.params.id
       }`;

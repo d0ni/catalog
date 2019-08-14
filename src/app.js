@@ -27,8 +27,6 @@ export default class App extends React.Component {
             <Route path="/register" component={RegisterPage} />
             <Route path="/login" component={RegisterPage} />
             <Route path="/product/:id" component={Product} />
-            {/* <Route path="/about" component={About} />
-            <Route component={NotFound} /> */}
           </Switch>
         </BrowserRouter>
       </>

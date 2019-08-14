@@ -9,7 +9,7 @@ export default class HomePage extends Component {
     requestText: []
   };
 
-  componentDidMount() {
+  componentWillMount() {
     const url = "http://smktesting.herokuapp.com/api/products/";
 
     httpGet(url).then(response => {

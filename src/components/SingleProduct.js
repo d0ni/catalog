@@ -12,6 +12,7 @@ export default class SingleProduct extends Component {
     requestText: []
   };
 
+  //find average value for rate
   average(arr) {
     let sum = 0;
     for (let i = 0; i < arr.length; i++) sum += arr[i];
@@ -19,7 +20,7 @@ export default class SingleProduct extends Component {
     return Math.floor(sum * 10) / 10;
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const url = `http://smktesting.herokuapp.com/api/reviews/${
       this.props.obj.id
     }`;
@@ -35,8 +36,8 @@ export default class SingleProduct extends Component {
     const avr = this.average(this.state.requestText.map(obj => obj.rate));
 
     const selectStar = pos => {
-      if (pos < avr) return star;
-      if (pos - 0.5 < avr) return halfStar;
+      if (pos <= avr) return star;
+      if (pos - 0.5 <= avr) return halfStar;
       return borderStar;
     };
 

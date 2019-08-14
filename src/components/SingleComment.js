@@ -13,6 +13,7 @@ export default class SingleProduct extends Component {
       created_by: { username }
     } = this.props.obj;
 
+    //change date view
     const date = new Date(created_at);
     const strDate = `${date.getDate()}.${date.getMonth() +
       1}.${date.getFullYear()} ${date.getHours()}:${
